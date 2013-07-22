@@ -6,9 +6,9 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "express": "3.2.6",
+    "express": ">=3.2.6",
     "ejs": "*",
-    "mysql": "2.0.0-alpha8",
-    "sql": "0.25.0"
+    "mysql": ">=2.0.0-alpha8",
+    "sql": ">=0.25.0"
   }
 }

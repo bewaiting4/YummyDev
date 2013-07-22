@@ -56,17 +56,24 @@
 
        "/order": {
            "get": "routes.order.list",
-           "/:date": {
-               "get": "routes.order.listByDate",
+           "/:period": {
+               "get": "routes.order.listByPeriod",
                "/:user": {
-                   "get": "routes.order.listByUserNDate"
+                   "get": "routes.order.listByUserPeriod"
                }
            },
            "/user": {
                "/:user": {
-                   "get": "routes.order.listByUser"
+                   "get": "routes.order.listByUser",
+                   "/:period": {
+                       "post": "routes.order.userSubmitOrder",
+                       "/:orderNumber": {
+                           "del": "routes.order.userCancelOrder"
+                       }
+                   }
                }
            }
+
        }
 
     }

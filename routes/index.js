@@ -12,7 +12,7 @@ exports.validateLogin = function(req, res, next){
     }
 
     if(req.body.username){
-        res.session.user_id = req.body.username;
+        req.session.user_id = req.body.username;
         res.redirect(req.nextUrl);
     }
 
@@ -62,10 +62,10 @@ exports.menu = {
 
     list: function(req, res){
 
-        var sql = schema.Menu.select().order("Date");
+        var sql = schema.Menu.select().order("Date").toQuery();
 
-        db.runSql(sql.text, sql.values, function(result){
-            res.json(result);
+        db.runSql(sql.text, sql.values, function(err, rows, fields){
+            res.json(rows);
         });
     },
 
@@ -94,18 +94,34 @@ exports.order = {
 
     list: function(req, res){
 
-        var sql = schema.Order.select().order("Date");
+        var sql = schema.Order.select().order("Date").toQuery();
 
         db.runSql(sql.text, sql.values, function(result){
             res.json(result);
         });
     },
 
-    listByDate: db.getAllWhere(schema.Order, {}, {"date": "Date"}),
+    listByPeriod: function(req, res){
 
-    listByUserNDate: db.getAllWhere(schema.Order, {}, {"date": "Date", "user": "UserId"}),
+    },
 
-    listByUser: db.getAllWhere(schema.Order, {}, {"user": "UserId"})
+    listByUserPeriod: function(req, res){
+
+    },
+
+    listByUser: db.getAllWhere(schema.Order, {}, {"user": "UserId"}),
+
+    userSubmitOrder: function(req, res){
+
+    },
+
+    userCancelOrder: function(req, res){
+
+        /**
+         * TODO if all the menu in this order number are before endDate. allow user to delete
+         */
+
+    }
 };
 
 exports.vendor = {
