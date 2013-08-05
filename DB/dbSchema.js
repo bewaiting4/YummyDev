@@ -11,8 +11,7 @@ exports.Food = sql.define({
         { name: 'FoodImg' },
         { name: 'FoodPrice' },
         { name: 'isAvailable' },
-        { name: 'VendorId' },
-        { name :'createTimestamp'}
+        { name: 'VendorId' }
     ]
 });
 
@@ -23,9 +22,7 @@ exports.Menu = sql.define({
         { name: 'Date' },
         { name: 'EndDate' },
         { name: 'Status' },
-        { name: 'FoodId' },
-        { name: 'MenuNumber'},
-        { name :'createTimestamp'}
+        { name: 'FoodId' }
     ]
 });
 
@@ -36,8 +33,7 @@ exports.Order = sql.define({
         { name: 'FoodId' },
         { name: 'UserId' },
         { name: 'OrderNumber' },
-        { name: 'OrderDate' },
-        { name :'createTimestamp'}
+        { name: 'OrderDate' }
     ]
 });
 
@@ -45,8 +41,7 @@ exports.User = sql.define({
     name: 'User',
     columns: [
         { name: 'idUser' },
-        { name: 'UserName' },
-        { name :'createTimestamp'}
+        { name: 'UserName' }
     ]
 });
 
@@ -54,7 +49,6 @@ exports.Vendor = sql.define({
     name: 'Vendor',
     columns: [
         { name: 'idVendor' },
-        { name: 'VendorName' },
-        { name :'createTimestamp'}
+        { name: 'VendorName' }
     ]
 });
