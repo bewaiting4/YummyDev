@@ -101,3 +101,8 @@ exports.validateParameters = function(){
     return  function(){ return false;};
 
 };
+
+exports.validateEntry = function(){
+
+};
+

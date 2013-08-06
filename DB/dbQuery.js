@@ -114,7 +114,7 @@ exports.getAllWhere = function () {
 
         db.runSql(sql.text, !util.isEmpty(sql.values) && sql.values, function (err, rows, fields) {
 
-            res.json(rows);
+            if(!err) res.json(rows);
 
         });
 
@@ -152,7 +152,7 @@ exports.deleteWhere = function () {
             sql = sql.where(parsedQuery).toQuery();
 
             db.runSql(sql.text, sql.values, function (err, result) {
-                res.json(result);
+                if(!err) res.json(result);
             });
 
         } else {
@@ -191,9 +191,13 @@ exports.insert = function () {
 
             var sql = p.schema.insert(parsedQuery).toQuery();
 
-            db.runSql(sql.text, sql.values, function (err, result) {
-                res.json(result);
-            });
+            db.runSql(sql.text, sql.values,
+                function (err, result) {
+                    if(!err) res.json(result);
+                },
+                function(err){
+                    res.json(err);
+                });
         } else {
             res.json({"error": "Invalid input"});
         }
@@ -235,7 +239,7 @@ exports.updateBy = function () {
             var sql = p.schema.update(parsedQuery).where(filter).toQuery();
 
             db.runSql(sql.text, sql.values, function (err, result) {
-                res.json(result);
+                if(!err) res.json(result);
             });
         } else {
             res.json({"error": "Invalid input"});

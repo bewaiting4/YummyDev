@@ -44,28 +44,31 @@
            "get": "routes.menu.list",
            "/:date": {
                "get": "routes.menu.listByDate",
-               "post": "routes.menu.bulkAdd",
-               "del": "routes.menu.bulkDel",
-               "put": "routes.menu.bulkUpdate",
+               "post": "routes.menu.add",
+               "del": "routes.menu.del",
+               "put": "routes.menu.submit",
                "/:id": {
-                   "put": "routes.menu.update",
-                   "del": "routes.menu.del"
+                   "put": "routes.menu.updateItem",
+                   "del": "routes.menu.delItem",
+                   "post":  "routes.menu.addItem"
+
                }
            }
        },
 
        "/order": {
-           "get": "routes.order.list",
-           "/:period": {
-               "get": "routes.order.listByPeriod",
-               "/:user": {
-                   "get": "routes.order.listByUserPeriod"
+           "/:from":{
+               "/:to": {
+                   "get": "routes.order.listByPeriod",
+                   "/:user": {
+                       "get": "routes.order.listByUserPeriod"
+                   }
                }
            },
            "/user": {
                "/:user": {
                    "get": "routes.order.listByUser",
-                   "/:period": {
+                   "/:date": {
                        "post": "routes.order.userSubmitOrder",
                        "/:orderNumber": {
                            "del": "routes.order.userCancelOrder"
