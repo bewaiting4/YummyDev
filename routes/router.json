@@ -44,14 +44,14 @@
            "get": "routes.menu.list",
            "/:date": {
                "get": "routes.menu.listByDate",
-               "post": "routes.menu.add",
                "del": "routes.menu.del",
-               "put": "routes.menu.submit",
+               "post":  "routes.menu.addItem",
                "/:id": {
+                   "/publish": {
+                       "put": "routes.menu.submit"
+                   },
                    "put": "routes.menu.updateItem",
-                   "del": "routes.menu.delItem",
-                   "post":  "routes.menu.addItem"
-
+                   "del": "routes.menu.delItem"
                }
            }
        },
@@ -68,11 +68,10 @@
            "/user": {
                "/:user": {
                    "get": "routes.order.listByUser",
-                   "/:date": {
-                       "post": "routes.order.userSubmitOrder",
-                       "/:orderNumber": {
-                           "del": "routes.order.userCancelOrder"
-                       }
+                   "post": "routes.order.userAddOrder",
+
+                   "/:orderNumber": {
+                       "del": "routes.order.userCancelOrder"
                    }
                }
            }

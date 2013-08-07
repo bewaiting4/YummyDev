@@ -1,54 +1,61 @@
-var sql = require('sql');
+(function () {
 
-sql.setDialect('mysql');
+    var sql = require('sql');
 
-exports.Food = sql.define({
-    name: 'Food',
-    columns: [
-        { name: 'idFood' },
-        { name: 'FoodName' },
-        { name: 'FoodDesc' },
-        { name: 'FoodImg' },
-        { name: 'FoodPrice' },
-        { name: 'isAvailable' },
-        { name: 'VendorId' }
-    ]
-});
+    sql.setDialect('mysql');
 
-exports.Menu = sql.define({
-    name: 'Menu',
-    columns: [
-        { name: 'idMenu' },
-        { name: 'Date' },
-        { name: 'EndDate' },
-        { name: 'Status' },
-        { name: 'FoodId' }
-    ]
-});
+    var schema = {};
 
-exports.Order = sql.define({
-    name: 'Order',
-    columns: [
-        { name: 'idOrder' },
-        { name: 'FoodId' },
-        { name: 'UserId' },
-        { name: 'OrderNumber' },
-        { name: 'OrderDate' }
-    ]
-});
+    schema.Food = sql.define({
+        name: 'Food',
+        columns: [
+            { name: 'idFood' },
+            { name: 'FoodName' },
+            { name: 'FoodDesc' },
+            { name: 'FoodImg' },
+            { name: 'FoodPrice' },
+            { name: 'isAvailable' },
+            { name: 'VendorId' }
+        ]
+    });
 
-exports.User = sql.define({
-    name: 'User',
-    columns: [
-        { name: 'idUser' },
-        { name: 'UserName' }
-    ]
-});
+    schema.Menu = sql.define({
+        name: 'Menu',
+        columns: [
+            { name: 'idMenu' },
+            { name: 'Date' },
+            { name: 'EndDate' },
+            { name: 'Status' },
+            { name: 'FoodId' }
+        ]
+    });
 
-exports.Vendor = sql.define({
-    name: 'Vendor',
-    columns: [
-        { name: 'idVendor' },
-        { name: 'VendorName' }
-    ]
-});
+    schema.Order = sql.define({
+        name: 'Order',
+        columns: [
+            { name: 'idOrder' },
+            { name: 'MenuId' },
+            { name: 'UserId' },
+            { name: 'OrderTime' }
+        ]
+    });
+
+    schema.User = sql.define({
+        name: 'User',
+        columns: [
+            { name: 'idUser' },
+            { name: 'UserName' }
+        ]
+    });
+
+    schema.Vendor = sql.define({
+        name: 'Vendor',
+        columns: [
+            { name: 'idVendor' },
+            { name: 'VendorName' }
+        ]
+    });
+
+    module.exports = schema;
+
+})();

@@ -66,7 +66,7 @@ CREATE TABLE `Menu` (
   UNIQUE KEY `idMenu_UNIQUE` (`idMenu`),
   KEY `fk_Menu_FoodId` (`FoodId`),
   CONSTRAINT `fk_Menu_FoodId` FOREIGN KEY (`FoodId`) REFERENCES `Food` (`idFood`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -75,6 +75,7 @@ CREATE TABLE `Menu` (
 
 LOCK TABLES `Menu` WRITE;
 /*!40000 ALTER TABLE `Menu` DISABLE KEYS */;
+INSERT INTO `Menu` VALUES (1,'2013-08-07','2013-09-01 00:00:00','saved',5),(2,'2013-08-07','2013-08-09 00:00:00','saved',6),(4,'2013-08-05','2013-08-06 00:00:00','published',5);
 /*!40000 ALTER TABLE `Menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -89,8 +90,9 @@ CREATE TABLE `Vendor` (
   `idVendor` int(11) NOT NULL AUTO_INCREMENT,
   `VendorName` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`idVendor`),
-  UNIQUE KEY `idVendor_UNIQUE` (`idVendor`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  UNIQUE KEY `idVendor_UNIQUE` (`idVendor`),
+  UNIQUE KEY `VendorName_UNIQUE` (`VendorName`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,7 +101,7 @@ CREATE TABLE `Vendor` (
 
 LOCK TABLES `Vendor` WRITE;
 /*!40000 ALTER TABLE `Vendor` DISABLE KEYS */;
-INSERT INTO `Vendor` VALUES (1,'航空餐'),(2,'过桥米线'),(3,'半亩地'),(4,'老娘舅');
+INSERT INTO `Vendor` VALUES (5,'MC'),(3,'半亩地'),(4,'老娘舅'),(1,'航空餐'),(2,'过桥米线');
 /*!40000 ALTER TABLE `Vendor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -114,13 +116,14 @@ CREATE TABLE `Order` (
   `idOrder` int(11) NOT NULL AUTO_INCREMENT,
   `MenuId` int(11) NOT NULL,
   `UserId` int(11) NOT NULL COMMENT 'Ordered by this user.',
-  `OrderDate` datetime NOT NULL COMMENT 'This order is for this date.',
+  `OrderTime` datetime NOT NULL COMMENT 'This order is for this date.',
   PRIMARY KEY (`idOrder`),
+  UNIQUE KEY `idOrder_UNIQUE` (`idOrder`),
   KEY `fk_Order_UserId` (`UserId`),
   KEY `fk_Order_MenuId` (`MenuId`),
   CONSTRAINT `fk_Order_MenuId` FOREIGN KEY (`MenuId`) REFERENCES `Menu` (`idMenu`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_Order_UserId` FOREIGN KEY (`UserId`) REFERENCES `User` (`idUser`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -129,6 +132,7 @@ CREATE TABLE `Order` (
 
 LOCK TABLES `Order` WRITE;
 /*!40000 ALTER TABLE `Order` DISABLE KEYS */;
+INSERT INTO `Order` VALUES (1,1,1,'2013-08-05 00:00:00'),(2,2,3,'2013-08-06 00:00:00'),(8,2,5,'2013-08-05 00:00:00'),(10,4,2,'2013-08-06 00:00:00');
 /*!40000 ALTER TABLE `Order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -166,4 +170,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-08-05 18:20:16
+-- Dump completed on 2013-08-07 17:51:41
