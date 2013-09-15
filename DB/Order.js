@@ -130,8 +130,4 @@
 
     module.exports = orderCls;
 
-
-
-
-
 })();
