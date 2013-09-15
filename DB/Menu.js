@@ -66,3 +66,6 @@ exports.updateItem = db.updateBy(schema.Menu, "idMenu", "id", {"Status": "saved"
 exports.delItem = db.deleteWhere(schema.Menu, {"Status": "saved"}, {"id": "idMenu", "date": "Date"});
 
 exports.addItem = db.insert(schema.Menu, {"Status": "saved"}, {"id": "idMenu"});
+
+
+
